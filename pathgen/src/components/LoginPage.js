@@ -16,7 +16,7 @@ const LoginPage = () => {
 
     return (
         <div style={{ textAlign: 'center', padding: '50px' }}>
-            <h1>Login Page</h1>
+            <h1>Login</h1>
             <form onSubmit={handleLogin} style={{ maxWidth: '300px', margin: 'auto' }}>
                 {/* Email and Password Inputs */}
                 <input

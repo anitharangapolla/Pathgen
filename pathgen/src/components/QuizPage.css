@@ -1,98 +1,61 @@
-/* QuizPage.css */
-
-/* Container styling */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    color: #333;
+/* Grid container for categories */ 
+*{
+  background-image: 'background.jpeg' , 'cover';
 }
 
-/* Page heading */
-h1 {
-    font-size: 2.5rem;
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Each category card */
+  .category-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Category title styling */
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
     color: #0a0a0a;
     font-weight: bold;
-    margin-bottom: 30px;
-}
-
-/* Search form styling */
-form {
-    margin-bottom: 30px;
-}
-
-.input-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Spacing between input and button */
-}
-
-.input-group input {
-    flex: 1;
-    padding: 12px;
-    font-size: 1.2rem;
-    border: 2px solid #ccc;
+  }
+  
+  /* Grid container for courses inside a category */
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  /* Individual course item */
+  .course-item {
+    background-color: #ddd;
+    padding: 10px;
     border-radius: 5px;
-    outline: none;
+    cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-    border-color: #0b0b0b;
-    box-shadow: 0 0 5px rgba(12, 12, 12, 0.5);
-}
-
-.input-group button {
-    padding: 12px 20px;
-    font-size: 1.2rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .course-item:hover {
     background-color: #0d0d0e;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.input-group button:hover {
-    background-color: #050505;
-}
-
-/* Categories section */
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    background-color: #f8f9fa;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-ul.list-group {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul.list-group .list-group-item {
-    padding: 15px;
-    font-size: 1.2rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-ul.list-group .list-group-item:hover {
-    background-color: #080808;
-    color: #fff;
-    transform: scale(1.02);
-}
-
-/* Footer spacing for better UI alignment */
-.container > div:last-child {
-    margin-top: 30px;
-}
+    transform: scale(1.1);
+  }
+  

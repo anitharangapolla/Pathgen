@@ -1,5 +1,6 @@
-/* src/components/HomePage.css */
-.home-container {
+/* src/components/HomePage.css */ 
+
+.home-container { 
     display: flex;
     flex-direction: column;
     align-items: center;

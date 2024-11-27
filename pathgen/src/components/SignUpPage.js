@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
     return (
         <div style={{ textAlign: 'center', padding: '50px' }}>
-            <h1>Sign Up Page</h1>
+            <h1>Sign Up</h1>
             <form onSubmit={handleSignUp} style={{ maxWidth: '300px', margin: 'auto' }}>
                 {/* Email, Password, and Confirm Password Inputs */}
                 <input
