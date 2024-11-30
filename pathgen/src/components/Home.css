@@ -1,21 +1,39 @@
 /* src/components/HomePage.css */ 
 
+.home-page {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(93, 87, 87);
+  
+    /* Background styles */
+   background-image: url('/src/image.jpeg'); /* Image from public folder */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */ 
+    filter: brightness(30%);
+  } 
+  .logo img {
+    width: 30px;
+    height: 30px; 
+    margin:10px 0px 0px 10px ; 
+}
+
 .home-container { 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
+    color: white light;
     justify-content: center;
     height: 100vh;
     text-align: center;
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9; /* Adjust as needed */
+     /* Adjust as needed */
 }
 
-.logo img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
-}
+
 
 .headline {
     font-size: 2.5rem;
@@ -26,7 +44,7 @@
 
 .subtitle {
     font-size: 1rem;
-    color: #666;
+    color: rgb(21, 20, 20);
     margin-bottom: 20px;
 }
 

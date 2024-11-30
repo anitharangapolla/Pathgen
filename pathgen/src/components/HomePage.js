@@ -16,9 +16,9 @@ const HomePage = () => {
     return (
         <div className="home-container">
             <div className="logo">
-                <img src="/pathgen.jpg" alt="Logo" />
+            
             </div>
-            <h1 className="headline">PathGen AI</h1>
+            <h1 className="headline">PathGen</h1>
             <p className="subtitle">
                 Unlock the Future of Learning with PathGen AI<br />
                 Your Journey to Success Starts Here!
@@ -32,9 +32,7 @@ const HomePage = () => {
                 <button className="signup-button" onClick={handleSignUpClick}>
                     Sign Up
                 </button>
-                <button className="login-button" onClick={handleLoginClick}>
-                    Login
-                </button>
+                
             </div>
         </div>
     );

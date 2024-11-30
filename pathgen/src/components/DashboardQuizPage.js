@@ -14,7 +14,6 @@ const DashboardQuizPage = () => {
     { name: 'Databases', courses: ['MySQL', 'MongoDB', 'PostgreSQL'] },
   ];
 
-  
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -23,19 +22,42 @@ const DashboardQuizPage = () => {
       alert('Please enter a course to search.');
     }
   };
-  
+
   const handleCourseClick = (course) => {
     navigate(`/quiz/${course}`); // Navigate to QuizPage for selected course
   };
 
   const handleLogout = () => {
-    navigate('/'); // Navigate back to the home page
+    localStorage.removeItem('authToken'); // Optional: Clear auth token if stored
+    navigate('/'); // Navigate to the login page
   };
 
   return (
     <div className="container mt-5">
+      {/* Logout Button in Header */}
+      <div style={{ position: 'relative' }}>
+        <button
+          onClick={handleLogout}
+          style={{  
+          
+            position:'fixed', 
+            top:'5px',
+            right: '10px',
+            padding: '5px',
+            fontSize: '15px',
+            backgroundColor: 'black',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+          }}
+        >
+          Logout
+        </button>
+      </div>
+
       {/* Header Section */}
-      <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '50px', color: 'white light' }}>
         <h1>Welcome to PathGen AI</h1>
         <p>
           Unlock the Future of Learning with PathGen AI! Start searching for courses and grow your knowledge today.
@@ -105,24 +127,6 @@ const DashboardQuizPage = () => {
           </div>
         ))}
       </div>
-
-      {/* Logout Button 
-      <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: '10px 20px',
-            fontSize: '16px',
-            backgroundColor: '#000',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          Logout
-        </button>
-      </div>*/}
     </div>
   );
 };

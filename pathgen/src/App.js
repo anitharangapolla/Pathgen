@@ -7,7 +7,7 @@ import SignUpPage from './components/SignUpPage';
 import LoginPage from './components/LoginPage'; 
 import DashboardQuizPage from './components/DashboardQuizPage';
 import NotFound from './components/NotFound';
-
+import './App.css';
 
 function App() {
     return (
