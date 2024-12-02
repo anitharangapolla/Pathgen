@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
- background-image: url('./image.jpeg'); /* Path from the public folder */
+ /*background-image: url('./image.jpeg'); /* Path from the public folder */
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
