@@ -1,58 +1,180 @@
 // src/components/SignUpPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { signup } from './api/api'; // Import the signup API function
 
 const SignUpPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-    const handleSignUp = (e) => {
-        e.preventDefault();
-        if (password !== confirmPassword) {
-            alert('Passwords do not match!');
-            return;
-        }
-        console.log('Signing up with:', { email, password });
-        alert('Sign Up Successful!');
-        navigate('/dashboard');
-    };
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setError('');
+    setMessage('');
 
-    return (
-        <div style={{ textAlign: 'center', padding: '50px' }}>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSignUp} style={{ maxWidth: '300px', margin: 'auto' }}>
-                {/* Email, Password, and Confirm Password Inputs */}
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    style={{ marginBottom: '15px', padding: '10px', width: '100%' }}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    style={{ marginBottom: '15px', padding: '10px', width: '100%' }}
-                />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                    style={{ marginBottom: '15px', padding: '10px', width: '100%' }}
-                />
-                <button type="submit" style={{ padding: '10px', width: '100%'  }}>Sign Up</button>
-            </form>
-            <Link to="/login">Login</Link>
-        </div>
-    );
+    // Password validation
+    if (password !== confirmPassword) {
+      setError('Passwords do not match!');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    try {
+      // API call to signup the user
+      const token = await signup(name, email, password);
+      localStorage.setItem('authToken', token); // Save token in localStorage
+      setMessage('Signup successful!');
+      navigate('/dashboard'); // Redirect to dashboard after successful signup
+    } catch (err) {
+      setError(err.message || 'Signup failed. Please try again.');
+    }
+  };
+
+  const styles = {
+    page: {
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: '#f9f9f9',
+      fontFamily: 'Arial, sans-serif',
+      color: '#333',
+    },
+    container: {
+      backgroundColor: '#fff',
+      borderRadius: '10px',
+      padding: '30px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      textAlign: 'center',
+      width: '100%',
+      maxWidth: '400px',
+    },
+    headline: {
+      fontSize: '1.8rem',
+      marginBottom: '20px',
+      fontWeight: 'bold',
+      color: '#000',
+    },
+    input: {
+      marginBottom: '15px',
+      padding: '10px',
+      width: '100%',
+      borderRadius: '5px',
+      border: '1px solid #ddd',
+      fontSize: '1rem',
+      outline: 'none',
+    },
+    error: {
+      color: '#dc3545',
+      fontSize: '14px',
+      marginBottom: '15px',
+    },
+    message: {
+      color: '#28a745',
+      fontSize: '14px',
+      marginBottom: '15px',
+    },
+    button: {
+      padding: '10px 15px',
+      width: '100%',
+      background: '#000',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      transition: 'background-color 0.2s',
+    },
+    buttonHover: {
+      backgroundColor: '#333',
+    },
+    footer: {
+      marginTop: '20px',
+      fontSize: '14px',
+      color: '#333',
+    },
+    link: {
+      color: '#000',
+      textDecoration: 'none',
+      fontWeight: 'bold',
+      transition: 'color 0.2s',
+    },
+    linkHover: {
+      color: '#555',
+    },
+  };
+
+  return (
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <h1 style={styles.headline}>Create an Account</h1>
+        <form onSubmit={handleSignUp}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            style={styles.input}
+          />
+          {error && <div style={styles.error}>{error}</div>}
+          {message && <div style={styles.message}>{message}</div>}
+          <button
+            type="submit"
+            style={styles.button}
+            onMouseOver={(e) => Object.assign(e.target.style, styles.buttonHover)}
+            onMouseOut={(e) => Object.assign(e.target.style, styles.button)}
+          >
+            Sign Up
+          </button>
+        </form>
+        <p style={styles.footer}>
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            style={styles.link}
+            onMouseOver={(e) => Object.assign(e.target.style, styles.linkHover)}
+            onMouseOut={(e) => Object.assign(e.target.style, styles.link)}
+          >
+            Log in
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default SignUpPage;

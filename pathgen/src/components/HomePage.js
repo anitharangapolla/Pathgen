@@ -14,9 +14,14 @@ const HomePage = () => {
     };
 
     return (
-        <div className="home-container">
+        <div className="home-container"> 
+             {/* Background Video */}
+             <video className="background-video" autoPlay muted loop>
+                <source src="/background.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
             <div className="logo">
-                <img src="/pathgen.jpg" alt="Logo" />
+                {/*<img src="/pathgen.jpg" alt="Logo" />*/}
             </div>
             <h1 className="headline">PathGen AI</h1>
             <p className="subtitle">
